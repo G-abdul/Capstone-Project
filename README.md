@@ -31,6 +31,6 @@ This is a static website hosted on an AWS EC2 instance using an NGINX web server
 
 ## 🌐 Live Preview
 
-Site is hosted at: `http://<your-ec2-ip>`
+Site is hosted at: `http://51.20.254.14/
 
 ---
