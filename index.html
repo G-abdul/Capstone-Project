@@ -1,49 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Abdul's AWS Static Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Abdul Ganiyu | Cloud Capstone</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f6f8;
-      padding: 50px;
-      max-width: 800px;
-      margin: auto;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background: #007acc;
+      color: #fff;
+      padding: 20px 0;
       text-align: center;
     }
-    h1 {
-      color: #2c3e50;
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
     }
-    p {
-      font-size: 18px;
-      color: #34495e;
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
     }
-    h3 {
-      margin-top: 40px;
-      color: #2980b9;
+    h1, h2 {
+      color: #007acc;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 20px;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #eee;
+      margin-top: 30px;
+    }
+    a {
+      color: #007acc;
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to My AWS Static Website!</h1>
 
-  <p>My name is <strong>Abdul Ganiyu Sumaila Ali</strong>. I am a student of the Techcrush Cloud Computing Bootcamp.</p>
+  <header>
+    <h1>Hi, I'm Abdul Ganiyu</h1>
+    <p>Aspiring Cloud Engineer | Techcrush Scholar | AWS & AZURE Enthusiast</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#project">Project</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-  <p>As part of my Capstone Project, I deployed this static website on a virtual server (EC2 instance) using AWS. The web server software I configured is <strong>NGINX</strong>, which serves this page directly from the cloud.</p>
+  <div class="container">
 
-  <p>This project demonstrates my understanding of core cloud infrastructure concepts such as:</p>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        I'm a passionate Cloud Computing student currently completing my capstone project as a Techcrush scholarship beneficiary. 
+        My journey into cloud began with a curiosity for how modern applications are hosted and scaled. 
+        Through this program, I’ve gained hands-on experience with AWS, AZURE and DevOps tools.
+      </p>
+    </section>
 
-  <ul style="list-style-type:none; padding-left: 0;">
-    <li>✅ Launching virtual machines (EC2)</li>
-    <li>🔐 SSH key-based authentication</li>
-    <li>💻 Linux command-line usage</li>
-    <li>🛠️ Installing and configuring NGINX</li>
-    <li>🧱 Managing firewall rules (Security Groups)</li>
-  </ul>
+    <section id="project">
+      <h2>Capstone Project</h2>
+      <p><strong>Title:</strong> Deploying a Static Website on AWS Using S3, CloudFront & Route 53</p>
+      <p>This project demonstrates how I built and deployed a fast, secure, and scalable static website using the AWS ecosystem. Here are the key highlights:</p>
+      <ul>
+        <li>Hosted the static website on Amazon S3</li>
+        <li>Used CloudFront to distribute content globally with SSL</li>
+        <li>Managed a custom domain via Route 53 DNS</li>
+        <li>Configured IAM for secure access and bucket policies</li>
+        <li>Implemented automation using GitHub Actions for future CI/CD</li>
+      </ul>
+      <!-- Placeholder for Screenshot -->
+      <p><em>[Insert Screenshot of your AWS-hosted website here]</em></p>
+    </section>
 
-  <h3> Skills & Tools Used:</h3>
-  <p>AWS EC2, NGINX, Linux CLI, SSH, IAM, HTML5, CSS3, & Git</p>
+    <section id="skills">
+      <h2>Skills & Tools</h2>
+      <ul>
+        <li>AWS S3, CloudFront, Route 53, IAM</li>
+        <li>Git & GitHub</li>
+        <li>HTML5 & CSS3</li>
+        <li>Bash Scripting & Linux CLI</li>
+        <li>GitHub Actions (CI/CD basics)</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:alisumaila.1000@gmail.com">alisumaila.1000@gmail.com</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/abdulganiyu" target="_blank">Abdul Ganiyu</a></p>
+      <p>GitHub: <a href="https://github.com/G-abdul/Capstone-Project.git" target="_blank">github.com/G-abdul/Capstone-Project.git</a></p>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Abdul Ganiyu | Techcrush Cloud Computing Capstone</p>
+  </footer>
+
 </body>
 </html>
-
