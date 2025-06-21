@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 📥 Checkout the code
+    - name: 📥 Checkout repo
       uses: actions/checkout@v3
 
     - name: 📤 Copy index.html to EC2
@@ -22,7 +22,7 @@ jobs:
         source: "index.html"
         target: "/home/ubuntu/"
 
-    - name: 🔧 Move file to NGINX and restart service
+    - name: 🔧 Move file to NGINX and restart
       uses: appleboy/ssh-action@v0.1.4
       with:
         host: ec2-16-171-253-113.eu-north-1.compute.amazonaws.com
