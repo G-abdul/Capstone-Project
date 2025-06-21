@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -53,7 +53,7 @@
 
   <header>
     <h1>Hi, I'm Abdul Ganiyu</h1>
-    <p>Aspiring Cloud Engineer | Techcrush Scholar | AWS & AZURE Enthusiast</p>
+    <p>Aspiring Cloud Engineer | Techcrush Scholar | AWS & Linux Enthusiast</p>
     <nav>
       <a href="#about">About</a>
       <a href="#project">Project</a>
@@ -67,35 +67,36 @@
     <section id="about">
       <h2>About Me</h2>
       <p>
-        I'm a passionate Cloud Computing student currently completing my capstone project as a Techcrush scholarship beneficiary. 
-        My journey into cloud began with a curiosity for how modern applications are hosted and scaled. 
-        Through this program, I’ve gained hands-on experience with AWS, AZURE and DevOps tools.
+        I'm a passionate Cloud Computing student currently completing my capstone project as a Techcrush scholarship beneficiary.
+        My journey into the cloud started with curiosity and has evolved into real-world skills through this bootcamp. I’m focused on learning how cloud infrastructure works, how to automate deployments, and how to build secure and scalable systems.
       </p>
     </section>
 
     <section id="project">
       <h2>Capstone Project</h2>
-      <p><strong>Title:</strong> Deploying a Static Website on AWS Using S3, CloudFront & Route 53</p>
-      <p>This project demonstrates how I built and deployed a fast, secure, and scalable static website using the AWS ecosystem. Here are the key highlights:</p>
+      <p><strong>Title:</strong> Deploying a Static Website on AWS EC2 Using GitHub Actions & NGINX</p>
+      <p>This project showcases the process of hosting a static website on an EC2 instance with automated deployment. Here's what it involved:</p>
       <ul>
-        <li>Hosted the static website on Amazon S3</li>
-        <li>Used CloudFront to distribute content globally with SSL</li>
-        <li>Managed a custom domain via Route 53 DNS</li>
-        <li>Configured IAM for secure access and bucket policies</li>
-        <li>Implemented automation using GitHub Actions for future CI/CD</li>
+        <li>Provisioned an Ubuntu EC2 instance on AWS</li>
+        <li>Configured NGINX to serve static web content</li>
+        <li>Set up SSH key-based authentication</li>
+        <li>Wrote a GitHub Actions workflow to auto-deploy updates via SCP & SSH</li>
+        <li>Used a `.pem` key securely stored as a GitHub secret</li>
       </ul>
-      <!-- Placeholder for Screenshot -->
-      <p><em>[Insert Screenshot of your AWS-hosted website here]</em></p>
+      <h3>Project Screenshot</h3>
+<img src="screenshot.png" alt="Screenshot of deployed website" style="max-width:100%; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
+
     </section>
 
     <section id="skills">
       <h2>Skills & Tools</h2>
       <ul>
-        <li>AWS S3, CloudFront, Route 53, IAM</li>
+        <li>AWS EC2, NGINX, IAM</li>
         <li>Git & GitHub</li>
+        <li>GitHub Actions (CI/CD)</li>
+        <li>Linux Command Line & Bash</li>
         <li>HTML5 & CSS3</li>
-        <li>Bash Scripting & Linux CLI</li>
-        <li>GitHub Actions (CI/CD basics)</li>
+        <li>SSH & Secure Key Management</li>
       </ul>
     </section>
 
@@ -103,15 +104,16 @@
       <h2>Contact</h2>
       <p>Email: <a href="mailto:alisumaila.1000@gmail.com">alisumaila.1000@gmail.com</a></p>
       <p>LinkedIn: <a href="https://www.linkedin.com/in/abdulganiyu" target="_blank">Abdul Ganiyu</a></p>
-      <p>GitHub: <a href="https://github.com/G-abdul/Capstone-Project.git" target="_blank">github.com/G-abdul/Capstone-Project</a></p>
+      <p>GitHub: <a href="https://github.com/G-abdul/Capstone-Project" target="_blank">github.com/G-abdul/Capstone-Project</a></p>
     </section>
 
   </div>
 
   <footer>
-    <p>&copy; 2025 Abdul Ganiyu | Techcrush Cloud Computing Capstone</p>
+    <p>&copy; 2025 Abdul Ganiyu | Techcrush Cloud Capstone Project | #TechCrushGraduate</p>
   </footer>
 
 </body>
 </html>
-echo "<!-- deploying to final EC2 instance -->" >> index.html
+
+
