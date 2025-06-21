@@ -3,33 +3,32 @@ name: Deploy Static Website to EC2
 on:
   push:
     branches:
-      - main   # Triggers only when you push to the main branch
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 📥 Checkout the repository
-      uses: actions/checkout@v3
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v3
 
-    - name: 📤 Copy index.html to EC2
-      uses: appleboy/scp-action@v0.1.4
-      with:
-        host: ec2-16-171-253-113.eu-north-1.compute.amazonaws.com
-        username: ubuntu
-        key: ${{ secrets.EC2_KEY }}
-        source: "index.html"
-        target: "/home/ubuntu/"
+      - name: 📤 Copy index.html to EC2
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ec2-16-171-253-113.eu-north-1.compute.amazonaws.com
+          username: ubuntu
+          key: ${{ secrets.EC2_KEY }}
+          source: "index.html"
+          target: "/home/ubuntu/"
 
-    - name: 🔧 Move file and restart NGINX
-      uses: appleboy/ssh-action@v0.1.4
-      with:
-        host: ec2-16-171-253-113.eu-north-1.compute.amazonaws.com
-        username: ubuntu
-        key: ${{ secrets.EC2_KEY }}
-        script: |
-          sudo mv /home/ubuntu/index.html /var/www/html/index.html
-          sudo chown www-data:www-data /var/www/html/index.html
-          sudo systemctl restart nginx
-
+      - name: 🔧 SSH to EC2 and move file to NGINX
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ec2-16-171-253-113.eu-north-1.compute.amazonaws.com
+          username: ubuntu
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            sudo mv /home/ubuntu/index.html /var/www/html/index.html
+            sudo chown www-data:www-data /var/www/html/index.html
+            sudo systemctl restart nginx
