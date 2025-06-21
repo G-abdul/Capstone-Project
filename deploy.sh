@@ -6,44 +6,43 @@
 # --------------------------------------------
 
 # === Configuration ===
-KEY_PATH="./aws"                             # Your private key file (aws.pem)
+KEY_PATH="./Abdul's key.pem"                 # Your PEM file path
 EC2_USER="ubuntu"
-EC2_IP="51.20.254.14"
-REMOTE="$EC2_USER@$EC2_IP"
+EC2_HOST="ec2-16-171-253-113.eu-north-1.compute.amazonaws.com"
 LOCAL_FILE="index.html"
 REMOTE_DIR="/home/ubuntu"
 NGINX_DIR="/var/www/html"
-WEBSITE_URL="http://$EC2_IP/"
+WEBSITE_URL="http://$EC2_HOST/"
 
-# === Helper Functions ===
+# === Helper: Check if a file exists ===
 function check_file_exists() {
   if [ ! -f "$1" ]; then
-    echo "❌ Error: File '$1' not found."
+    echo "❌ Error: File '$1' not found. Make sure it's in the correct directory."
     exit 1
   fi
 }
 
-# === Step 1: Check required files ===
-echo "🔍 Checking for required files..."
+# === Step 1: Validate required files ===
+echo "🔍 Validating files..."
 check_file_exists "$KEY_PATH"
 check_file_exists "$LOCAL_FILE"
 
-# === Step 2: Upload website file to EC2 ===
-echo "📤 Uploading '$LOCAL_FILE' to EC2..."
-scp -i "$KEY_PATH" "$LOCAL_FILE" "$REMOTE:$REMOTE_DIR/"
+# === Step 2: Upload index.html to EC2 ===
+echo "📤 Uploading '$LOCAL_FILE' to $EC2_HOST..."
+scp -i "$KEY_PATH" "$LOCAL_FILE" "$EC2_USER@$EC2_HOST:$REMOTE_DIR/"
 if [ $? -ne 0 ]; then
-  echo "❌ File upload failed. Aborting."
+  echo "❌ SCP failed. Please check your internet, IP, or key."
   exit 1
 fi
 
-# === Step 3: SSH into EC2 and deploy to NGINX ===
-echo "🔧 Configuring web server..."
-ssh -i "$KEY_PATH" "$REMOTE" << EOF
+# === Step 3: SSH into EC2 and deploy ===
+echo "🔧 Moving file into NGINX directory and restarting service..."
+ssh -i "$KEY_PATH" "$EC2_USER@$EC2_HOST" << EOF
   sudo mv "$REMOTE_DIR/index.html" "$NGINX_DIR/index.html"
   sudo chown www-data:www-data "$NGINX_DIR/index.html"
   sudo systemctl restart nginx
 EOF
 
-# === Done ===
-echo "✅ Deployment complete!"
-echo "🌐 Visit your site at: $WEBSITE_URL"
+# === Final Message ===
+echo "✅ Deployment successful!"
+echo "🌐 Website is live at: $WEBSITE_URL"
