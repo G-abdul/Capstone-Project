@@ -23,10 +23,9 @@ jobs:
         mkdir -p ~/.ssh
         ssh-keyscan -H ec2-16-171-253-113.eu-north-1.compute.amazonaws.com >> ~/.ssh/known_hosts
 
-    - name: 📁 Upload website folder
+     - name: 📤 Upload index.html to EC2
       run: |
-        rsync -avz -e "ssh -i id_rsa" ./website/ ubuntu@ec2-16-171-253-113.eu-north-1.compute.amazonaws.com:/home/ubuntu/site-temp/
-
+        rsync -avz -e "ssh -i ~/.ssh/id_rsa" ./index.html ubuntu@ec2-16-171-253-113.eu-north-1.compute.amazonaws.com:/home/ubuntu/
     - name: 📜 Upload deploy.sh
       run: |
         rsync -avz -e "ssh -i id_rsa" ./deploy.sh ubuntu@ec2-16-171-253-113.eu-north-1.compute.amazonaws.com:/home/ubuntu/deploy.sh
