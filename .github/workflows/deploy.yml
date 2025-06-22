@@ -13,11 +13,7 @@ jobs:
     - name: 📥 Checkout code
       uses: actions/checkout@v3
 
-<<<<<<< HEAD
-    - name: 🔑 Decode EC2 Private Key
-=======
     - name: 🔐 Setup SSH key
->>>>>>> 92699b2 (Use rsync deploy via SSH)
       run: |
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_rsa
         chmod 600 id_rsa
@@ -31,5 +27,4 @@ jobs:
       run: |
         rsync -avz -e "ssh -i id_rsa" \
           ./index.html ubuntu@ec2-16-171-253-113.eu-north-1.compute.amazonaws.com:/var/www/html/
-
 
