@@ -1,4 +1,4 @@
-name: Deploy Static Website via rsync
+name: 🚀 Deploy Static Website to EC2
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
     - name: 📥 Checkout code
       uses: actions/checkout@v3
 
-    - name: 🔐 Setup SSH key
+    - name: 🔐 Setup SSH private key
       run: |
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_rsa
         chmod 600 id_rsa
@@ -23,8 +23,16 @@ jobs:
         mkdir -p ~/.ssh
         ssh-keyscan -H ec2-16-171-253-113.eu-north-1.compute.amazonaws.com >> ~/.ssh/known_hosts
 
-    - name: 🔁 Sync site via rsync
+    - name: 📁 Upload website folder
       run: |
-        rsync -avz -e "ssh -i id_rsa" \
-          ./index.html ubuntu@ec2-16-171-253-113.eu-north-1.compute.amazonaws.com:/var/www/html/
+        rsync -avz -e "ssh -i id_rsa" ./website/ ubuntu@ec2-16-171-253-113.eu-north-1.compute.amazonaws.com:/home/ubuntu/site-temp/
+
+    - name: 📜 Upload deploy.sh
+      run: |
+        rsync -avz -e "ssh -i id_rsa" ./deploy.sh ubuntu@ec2-16-171-253-113.eu-north-1.compute.amazonaws.com:/home/ubuntu/deploy.sh
+
+    - name: 🚀 Run deploy.sh on EC2
+      run: |
+        ssh -i id_rsa ubuntu@ec2-16-171-253-113.eu-north-1.compute.amazonaws.com "chmod +x ~/deploy.sh && ~/deploy.sh"
+
 
