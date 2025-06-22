@@ -12,7 +12,7 @@ EC2_HOST="ec2-16-171-253-113.eu-north-1.compute.amazonaws.com"
 LOCAL_DIR="website"                              # Your full site folder
 REMOTE_TMP_DIR="/home/ubuntu/site-temp"
 NGINX_DIR="/var/www/html"
-WEBSITE_URL="http://$EC2_HOST/"
+WEBSITE_URL="http://$EC2_HOST/" 
 
 # === Check key and folder existence ===
 function check_file_exists() {
