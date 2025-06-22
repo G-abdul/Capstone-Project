@@ -13,7 +13,7 @@ jobs:
     - name: 📥 Checkout Repository
       uses: actions/checkout@v3
 
-    - name: 🔑 Decode PEM key
+    - name: 🔑 ecode EC2 Private Key
       run: |
         echo "${{ secrets.EC2_KEY_B64 }}" | base64 -d > ec2-key.pem
         chmod 600 ec2-key.pem
