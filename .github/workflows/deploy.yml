@@ -1,4 +1,4 @@
-name: Deploy Static Website to EC2
+name: Deploy Static Website via rsync
 
 on:
   push:
@@ -10,32 +10,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 📥 Checkout Repository
+    - name: 📥 Checkout code
       uses: actions/checkout@v3
 
+<<<<<<< HEAD
     - name: 🔑 Decode EC2 Private Key
+=======
+    - name: 🔐 Setup SSH key
+>>>>>>> 92699b2 (Use rsync deploy via SSH)
       run: |
-        echo "${{ secrets.EC2_KEY_B64 }}" | base64 -d > ec2-key.pem
-        chmod 600 ec2-key.pem
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_rsa
+        chmod 600 id_rsa
 
-    - name: 📤 Copy index.html to EC2
-      uses: appleboy/scp-action@v0.1.4
-      with:
-        host: ec2-16-171-253-113.eu-north-1.compute.amazonaws.com
-        username: ubuntu
-        key_path: ec2-key.pem
-        source: "index.html"
-        target: "/home/ubuntu/"
+    - name: 🧪 Add EC2 to known_hosts
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan -H ec2-16-171-253-113.eu-north-1.compute.amazonaws.com >> ~/.ssh/known_hosts
 
-    - name: 🔧 Move file to NGINX and restart service
-      uses: appleboy/ssh-action@v0.1.4
-      with:
-        host: ec2-16-171-253-113.eu-north-1.compute.amazonaws.com
-        username: ubuntu
-        key_path: ec2-key.pem
-        script: |
-          sudo mv /home/ubuntu/index.html /var/www/html/index.html
-          sudo chown www-data:www-data /var/www/html/index.html
-          sudo systemctl restart nginx
+    - name: 🔁 Sync site via rsync
+      run: |
+        rsync -avz -e "ssh -i id_rsa" \
+          ./index.html ubuntu@ec2-16-171-253-113.eu-north-1.compute.amazonaws.com:/var/www/html/
 
 
